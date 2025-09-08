@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AncientDoc – Chinese Ancient Documents Benchmark</title>
+  <meta name="description" content="AncientDoc: a multi-task benchmark for Chinese ancient documents, evaluating vision-language models from page-level OCR to knowledge reasoning." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="left">
+      <div class="logo"></div>
+      <a href="#top">Home</a>
+      <a href="#abstract">Abstract</a>
+      <a href="#tasks">Tasks</a>
+      <a href="#dataset">Dataset</a>
+      <a href="#metrics">Metrics</a>
+      <a href="#results">Results</a>
+      <a href="#bibtex">BibTeX</a>
+    </div>
+    <div class="right">
+      <span class="pill">AncientDoc v1.0</span>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero single-column">
+    <div>
+      <h1>Benchmarking Vision-Language Models on Chinese Ancient Documents: From OCR to Knowledge Reasoning</h1>
+      <div class="subtitle">
+        We present <strong>AncientDoc</strong> — a comprehensive multi-task benchmark for Chinese ancient documents. It evaluates mainstream vision-language models (VLMs) across the full pipeline from <strong>page-level OCR</strong> and <strong>vernacular translation</strong> to <strong>reasoning-based QA</strong>, <strong>knowledge-based QA</strong>, and <strong>linguistic-variant QA</strong>.
+      </div>
+      <div class="badges">
+        <a class="btn" href="#" target="_blank">📄 Paper</a>
+        <a class="btn ghost" href="#" target="_blank">💻 Code</a>
+        <a class="btn ghost" href="https://huggingface.co/datasets/yuchuan123/AncientDoc" target="_blank">🧾 Dataset</a>
+      </div>
+      <div class="card">
+        <strong>TL;DR:</strong> AncientDoc covers <strong>14 categories</strong>, <strong>100+ books</strong>, and roughly <strong>3,000 pages</strong>...
+      </div>
+    </div>
+
+    <div class="teaser">
+      <img src="assets/teaser.png" alt="Teaser image" />
+    </div>
+
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:10px">
+      <span class="pill">Page-level OCR</span>
+      <span class="pill">Vernacular Translation</span>
+      <span class="pill">Reasoning & Knowledge QA</span>
+    </div>
+  </section>
+
+
+  <!-- ABSTRACT -->
+  <section id="abstract">
+    <h2>Abstract</h2>
+    <div class="card">
+      <p>
+        Chinese ancient documents preserve knowledge across millennia. However, most digitization efforts remain at the scanned-image level, limiting knowledge discovery and machine understanding. Existing document benchmarks primarily focus on English printed materials or Simplified Chinese and cannot fully assess VLMs’ OCR and higher-level understanding capabilities in ancient-document scenarios. We introduce <strong>AncientDoc</strong>, the first systematic multi-task benchmark for Chinese ancient documents, consisting of five tasks: <em>Page-level OCR</em>, <em>Vernacular Translation</em>, <em>Reasoning-based QA</em>, <em>Knowledge-based QA</em>, and <em>Linguistic-variant QA</em>. The dataset spans 14 categories, 100+ books, and about 3,000 pages. We evaluate mainstream VLMs with multiple metrics and complement them with LLM-based scoring that correlates strongly with human assessments, offering a unified framework for future research on ancient-document understanding.
+      </p>
+    </div>
+  </section>
+
+  <!-- TASKS -->
+  <section id="tasks">
+    <h2>Tasks</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>1) Page-level OCR</h3>
+        <p>Directly transcribe the entire page into reading order without explicit detection/cropping. Key challenges include <em>vertical right-to-left layouts</em>, <em>marginalia/small fonts</em>, and robust handling of <em>Traditional/variant characters</em>.</p>
+      </div>
+      <div class="card">
+        <h3>2) Vernacular Translation</h3>
+        <p>Translate Classical Chinese into modern vernacular Chinese. Difficulties include lexical disambiguation and semantic-aware segmentation/punctuation.</p>
+      </div>
+      <div class="card">
+        <h3>3) Reasoning-based QA</h3>
+        <p>Answer questions requiring implicit reasoning (e.g., factual, causal, relational). Tests multi-step reasoning and contextual understanding.</p>
+      </div>
+      <div class="card">
+        <h3>4) Knowledge-based QA</h3>
+        <p>Answer objective knowledge questions (people, places, terms, historical facts) grounded in the text, requiring classical knowledge background.</p>
+      </div>
+      <div class="card">
+        <h3>5) Linguistic-variant QA</h3>
+        <p>Identify and analyze stylistic, rhetorical, and genre characteristics, assessing understanding and generation with respect to linguistic variants.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>Coverage vs. Prior Benchmarks</h3>
+      <table>
+        <thead>
+          <tr><th>Task</th><th>DocVQA</th><th>TKH</th><th>MTH</th><th>OCRBench</th><th>OCRBench v2</th><th>AncientDoc</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Page-level OCR</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Vernacular Translation</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✓</td></tr>
+          <tr><td>Reasoning-based QA</td><td>✓</td><td>✗</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Knowledge-based QA</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✓</td></tr>
+          <tr><td>Linguistic-variant QA</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✓</td></tr>
+        </tbody>
+      </table>
+      <small class="muted">Reconstructed summary based on the paper’s comparison.</small>
+    </div>
+  </section>
+
+  <!-- DATASET -->
+  <section id="dataset">
+    <h2>Dataset</h2>
+    <div class="grid2">
+      <div class="card">
+        <p><strong>Sources:</strong> primarily high-quality digital collections (e.g., Harvard Library). Selection criteria prioritize vertical layouts with Traditional characters, real-world degradation artifacts, and high semantic density suitable for annotation.</p>
+        <ul>
+          <li>Coverage: <strong>14</strong> categories, <strong>100+ books</strong>, and <strong>~3,000 pages</strong> (≈ 2,973–3,000).</li>
+          <li>Dynasty distribution (example): Ming (~1,148 pages), Qing (~778), Song (~540), Tang (~208).</li>
+          <li>Script style: Regular script ≈ <strong>97%</strong>, cursive ≈ <strong>3%</strong>.</li>
+        </ul>
+      </div>
+      <figure class="card">
+        <img src="assets/fig2_dynasty.png" alt="Dynasty distribution (placeholder)" style="width:100%">
+        <figcaption>Figure: page counts by dynasty (illustrative).</figcaption>
+      </figure>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <img src="assets/fig3_categories.png" alt="Category distribution (placeholder)" style="width:100%">
+      <figcaption>Figure: page counts by 14 document categories (illustrative).</figcaption>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section id="metrics">
+    <h2>Metrics</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Page-level OCR</h3>
+        <ul>
+          <li>Character Error Rate (CER)</li>
+          <li>Character Precision / Recall / F1</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Other Tasks</h3>
+        <ul>
+          <li>CHRF++</li>
+          <li>BERTScore (BS-F1)</li>
+          <li>LLM-based scores (0–10), selecting the LLM with the highest agreement with human ratings</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>LLM–Human Agreement (Illustrative)</h3>
+      <p>We compare several LLM judges (e.g., GPT-4o, Gemini, Qwen-Plus, Doubao, Qwen2.5-72B) against human ratings using Pearson/Spearman/Kendall correlations, MSE/MAE, and bias, and select the judge with the best agreement.</p>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results">
+    <h2>Results (Selected)</h2>
+    <div class="card">
+      <h3>Page-level OCR</h3>
+      <p>Gemini 2.5-Pro achieves the best overall performance on this task (e.g., higher Char F1, lower CER), while Qwen2.5 is stable across settings. Smaller models can sometimes outperform much larger ones for OCR-specific tasks.</p>
+      <img src="assets/table3_ocr.png" alt="Table 3 – Page-level OCR (placeholder)" style="width:100%;margin-top:8px">
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="card">
+        <h3>Vernacular Translation</h3>
+        <p>Gemini 2.5-Pro leads in BERTScore and LLM-based ratings; Qwen-VL-Max / Qwen2.5-VL-72B follow closely.</p>
+        <img src="assets/table4_translation.png" alt="Table 4 – Vernacular Translation (placeholder)" style="width:100%">
+      </div>
+      <div class="card">
+        <h3>Reasoning-based QA</h3>
+        <p>Qwen2.5-VL-72B reaches the highest BERTScore; the 7B variant approaches large-model performance with much fewer parameters.</p>
+        <img src="assets/table5_reasoning.png" alt="Table 5 – Reasoning-based QA (placeholder)" style="width:100%">
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="card">
+        <h3>Knowledge-based QA</h3>
+        <p>GPT-4o tops BERTScore; Doubao-V2 and Gemini 2.5-Pro perform best under LLM-based scoring.</p>
+        <img src="assets/table6_knowledge.png" alt="Table 6 – Knowledge-based QA (placeholder)" style="width:100%">
+      </div>
+      <div class="card">
+        <h3>Linguistic-variant QA</h3>
+        <p>GPT-4o and Gemini 2.5-Pro lead this task; notably, InternVL2.5 outperforms InternVL3 variants here.</p>
+        <img src="assets/table7_variant.png" alt="Table 7 – Linguistic-variant QA (placeholder)" style="width:100%">
+      </div>
+    </div>
+  </section>
+
+  <!-- BIBTEX -->
+  <section id="bibtex">
+    <h2>BibTeX</h2>
+    <div class="card">
+<pre><code>@article{ancientdoc2025,
+  title   = {Benchmarking Vision-Language Models on Chinese Ancient Documents: From OCR to Knowledge Reasoning},
+  author  = {<fill author list>},
+  journal = {arXiv preprint arXiv:<fill id>},
+  year    = {2025}
+}</code></pre>
+      <small class="muted">Replace the author list and arXiv ID when public.</small>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="nav" style="justify-content:space-between">
+    <div>© 2025 AncientDoc Authors. All rights reserved.</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="#" target="_blank">Paper</a>
+      <a href="#" target="_blank">Code</a>
+      <a href="#" target="_blank">Dataset</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
