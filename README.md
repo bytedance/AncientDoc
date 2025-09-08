@@ -100,4 +100,9 @@ If you use AncientDoc in your research, please cite:
 ## 🔗 Resources
 - 📂 Dataset: [HuggingFace Link](link_to_dataset)  
 - 📑 Paper: [arXiv Link](link_to_paper)  
-- 🤖 Baseline Models: [Weights & Logs](link_to_models)  
+- 🤖 Baseline Models: [Weights & Logs](link_to_models)
+
+## Data License
+
+The AncientDoc dataset runs under the CC0 license.
+
